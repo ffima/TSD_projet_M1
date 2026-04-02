@@ -4,7 +4,7 @@ from pathlib import Path
 def organize_dataset():
     base_path = Path(__file__).parent
     
-    src_path = base_path / "data" / "raw" / "srts"
+    src_path = base_path / "data" / "srts"
     dest_path = base_path / "data" / "raw"
 
     if not src_path.exists():
