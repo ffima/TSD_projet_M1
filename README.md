@@ -1,7 +1,7 @@
-# Projet de cours — Traitement statistique des données (Master TAL)
+# Projet de cours — Traitement statistique des données (M1, S2, TAL)
 ## Classification de sous-titres de films par ère cinématographique
 
-Ce dépôt contient le code source et les scripts développés dans le cadre du projet de Master TAL (Plurital, Semestre 2).
+Ce dépôt contient le code source et les scripts développés dans le cadre du projet de Master TAL (M1, S2).
 
 L'objectif est d'entraîner et de comparer les performances de différents algorithmes de classification par apprentissage automatique sur un corpus de sous-titres de films des années 1950 à 2024. La tâche consiste à prédire à quelle **ère cinématographique** appartient un film en se basant uniquement sur les dialogues de son script.
 
