@@ -1,0 +1,257 @@
+=================================================================
+  CLASSIFICATION PAR ERES - VERSION AMELIOREE
+=================================================================
+
+Train : /Users/serafimaklimova/PluriTAL/Traitement statistique des données/projet/TSD_projet_M1/dataset/train
+Test  : /Users/serafimaklimova/PluriTAL/Traitement statistique des données/projet/TSD_projet_M1/dataset/test
+
+Documents d'entrainement : 820
+Documents de test        : 207
+
+Repartition train : {'1950-1975': 237, '1976-1999': 251, '2000-2024': 332}
+Repartition test  : {'1950-1975': 60, '1976-1999': 64, '2000-2024': 83}
+
+=================================================================
+  VECTORISATION : TF-IDF baseline
+=================================================================
+  Dimensions : 39591 termes
+
+  > Naif Bayesien (ComplementNB)
+    Accuracy : 0.5604  (56.04 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.86      0.42      0.56        60
+   1976-1999       0.62      0.16      0.25        64
+   2000-2024       0.50      0.98      0.66        83
+
+    accuracy                           0.56       207
+   macro avg       0.66      0.52      0.49       207
+weighted avg       0.64      0.56      0.51       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  25         6          29         
+  1976-1999  2          10         52         
+  2000-2024  2          0          81         
+
+  > SVM - LinearSVC (C=1)
+    Accuracy : 0.7295  (72.95 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.74      0.77      0.75        60
+   1976-1999       0.63      0.56      0.60        64
+   2000-2024       0.78      0.83      0.81        83
+
+    accuracy                           0.73       207
+   macro avg       0.72      0.72      0.72       207
+weighted avg       0.72      0.73      0.73       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  46         13         1          
+  1976-1999  10         36         18         
+  2000-2024  6          8          69         
+
+  > Regression Logistique
+    Accuracy : 0.6957  (69.57 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.74      0.77      0.75        60
+   1976-1999       0.59      0.41      0.48        64
+   2000-2024       0.71      0.87      0.78        83
+
+    accuracy                           0.70       207
+   macro avg       0.68      0.68      0.67       207
+weighted avg       0.68      0.70      0.68       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  46         13         1          
+  1976-1999  10         26         28         
+  2000-2024  6          5          72         
+
+  > Random Forest
+    Accuracy : 0.7150  (71.50 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.82      0.78      0.80        60
+   1976-1999       0.67      0.41      0.50        64
+   2000-2024       0.68      0.90      0.77        83
+
+    accuracy                           0.71       207
+   macro avg       0.72      0.70      0.69       207
+weighted avg       0.72      0.71      0.70       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  47         9          4          
+  1976-1999  6          26         32         
+  2000-2024  4          4          75         
+
+
+=================================================================
+  VECTORISATION : TF-IDF ameliore (stop words + bigrams + sublinear)
+=================================================================
+  Dimensions : 80000 termes
+
+  > Naif Bayesien (ComplementNB)
+    Accuracy : 0.5845  (58.45 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.95      0.62      0.75        60
+   1976-1999       0.33      0.02      0.03        64
+   2000-2024       0.50      1.00      0.67        83
+
+    accuracy                           0.58       207
+   macro avg       0.60      0.54      0.48       207
+weighted avg       0.58      0.58      0.49       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  37         2          21         
+  1976-1999  2          1          61         
+  2000-2024  0          0          83         
+
+  > SVM - LinearSVC (C=1)
+    Accuracy : 0.7778  (77.78 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.79      0.83      0.81        60
+   1976-1999       0.76      0.53      0.62        64
+   2000-2024       0.78      0.93      0.85        83
+
+    accuracy                           0.78       207
+   macro avg       0.78      0.76      0.76       207
+weighted avg       0.78      0.78      0.77       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  50         10         0          
+  1976-1999  8          34         22         
+  2000-2024  5          1          77         
+
+  > Regression Logistique
+    Accuracy : 0.7150  (71.50 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.78      0.77      0.77        60
+   1976-1999       0.66      0.39      0.49        64
+   2000-2024       0.70      0.93      0.80        83
+
+    accuracy                           0.71       207
+   macro avg       0.71      0.70      0.69       207
+weighted avg       0.71      0.71      0.70       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  46         13         1          
+  1976-1999  7          25         32         
+  2000-2024  6          0          77         
+
+  > Random Forest
+    Accuracy : 0.7005  (70.05 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.83      0.73      0.78        60
+   1976-1999       0.62      0.36      0.46        64
+   2000-2024       0.67      0.94      0.78        83
+
+    accuracy                           0.70       207
+   macro avg       0.71      0.68      0.67       207
+weighted avg       0.70      0.70      0.68       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  44         12         4          
+  1976-1999  6          23         35         
+  2000-2024  3          2          78         
+
+
+=================================================================
+  VECTORISATION : TF-IDF caracteres (3-5-grammes)
+=================================================================
+  Dimensions : 60000 termes
+
+  > SVM - LinearSVC (C=1)
+    Accuracy : 0.7440  (74.40 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.76      0.78      0.77        60
+   1976-1999       0.67      0.55      0.60        64
+   2000-2024       0.77      0.87      0.82        83
+
+    accuracy                           0.74       207
+   macro avg       0.74      0.73      0.73       207
+weighted avg       0.74      0.74      0.74       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  47         12         1          
+  1976-1999  9          35         20         
+  2000-2024  6          5          72         
+
+  > Regression Logistique
+    Accuracy : 0.7391  (73.91 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.78      0.77      0.77        60
+   1976-1999       0.67      0.52      0.58        64
+   2000-2024       0.75      0.89      0.81        83
+
+    accuracy                           0.74       207
+   macro avg       0.73      0.72      0.72       207
+weighted avg       0.73      0.74      0.73       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  46         13         1          
+  1976-1999  7          33         24         
+  2000-2024  6          3          74         
+
+  > Random Forest
+    Accuracy : 0.7778  (77.78 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.87      0.80      0.83        60
+   1976-1999       0.78      0.55      0.64        64
+   2000-2024       0.73      0.94      0.82        83
+
+    accuracy                           0.78       207
+   macro avg       0.79      0.76      0.77       207
+weighted avg       0.79      0.78      0.77       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  48         9          3          
+  1976-1999  3          35         26         
+  2000-2024  4          1          78         
+
+
+=================================================================
+  OPTIMISATION : SVM + GridSearchCV (vectorisation amelioree)
+=================================================================
+  Recherche du meilleur C sur 5-fold CV...
+  Meilleur C : 10.0  (CV accuracy : 0.7963)
+  Accuracy test : 0.7826  (78.26 %)
+              precision    recall  f1-score   support
+
+   1950-1975       0.80      0.78      0.79        60
+   1976-1999       0.71      0.61      0.66        64
+   2000-2024       0.82      0.92      0.86        83
+
+    accuracy                           0.78       207
+   macro avg       0.77      0.77      0.77       207
+weighted avg       0.78      0.78      0.78       207
+
+  Matrice de confusion :
+             1950-1975  1976-1999  2000-2024  
+  1950-1975  47         13         0          
+  1976-1999  8          39         17         
+  2000-2024  4          3          76         
+
+=================================================================
+  RESUME
+=================================================================
+  Meilleure configuration : TF-IDF ameliore  +  SVM GridSearch
+  Accuracy                : 0.7826  (78.26 %)
+
