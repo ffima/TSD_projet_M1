@@ -1,8 +1,8 @@
-# Projet de cours Traitement statistique des données de Master TAL : Classification de textes (Oscars vs Blockbusters)
+# Projet de cours Traitement statistique des données de Master TAL : Classification de textes
 
 Ce dépôt contient le code source et les scripts développés dans le cadre de ce projet.
 
-L'objectif de ce projet est d'entraîner et de comparer les performances de différents algorithmes de classification par apprentissage automatique (*Machine Learning*) sur un corpus de sous-titres de films des années 1950 à 2020. La tâche consiste à prédire si un film appartient à la catégorie **"Oscar"** ou **"Blockbuster"** en se basant uniquement sur les dialogues de son script.
+L'objectif de ce projet est d'entraîner et de comparer les performances de différents algorithmes de classification par apprentissage automatique (Machine Learning) sur un corpus de sous-titres de films des années 1950 à 2024. La tâche consiste à prédire à quelle ère cinématographique appartient un film (50s-70s, 80-00s, 00s-20s) en se basant uniquement sur les dialogues de son script.
 
 ## Pipeline de Traitement et Scripts
 
