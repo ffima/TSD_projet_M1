@@ -1,15 +1,4 @@
 """
-Script de classification de textes par ÈRES — version améliorée.
-
-Améliorations par rapport à la version de base :
-    1. Suppression des stop words anglais
-    2. N-grammes (unigrammes + bigrammes) pour capturer le contexte
-    3. Sous-linéarisation TF (sublinear_tf=True)
-    4. Recherche des meilleurs hyperparamètres (GridSearchCV) pour le SVM
-    5. Modèles ensemblistes : Random Forest
-    6. Matrice de confusion affichée pour chaque modèle
-    7. Sauvegarde automatique des résultats dans ../resultats/
-
 MODE D'EMPLOI :
     python classification_era_v2.py
     python classification_era_v2.py <chemin_train> <chemin_test>
