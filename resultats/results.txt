@@ -1,0 +1,58 @@
+=== Chargement des données ===
+Lecture des données d'entraînement depuis : /Users/annausmarina/Documents/Master/M1 S2/Traitement statistique /TSD_projet_M1/dataset/train...
+Lecture des données de test depuis : /Users/annausmarina/Documents/Master/M1 S2/Traitement statistique /TSD_projet_M1/dataset/test...
+
+Documents d'entraînement : 820
+Documents de test : 207
+
+=== Vectorisation des textes (TF-IDF) ===
+Vectorisation du corpus d'entraînement...
+Vectorisation du corpus de test...
+Taille du vocabulaire extrait : 39591 mots.
+
+=== Évaluation des Modèles ===
+
+--- Naïf Bayésien (MultinomialNB) ---
+Précision globale (Accuracy) : 0.4783
+
+Rapport de classification :
+              precision    recall  f1-score   support
+
+   1950-1975       0.92      0.20      0.33        60
+   1976-1999       0.50      0.06      0.11        64
+   2000-2024       0.45      1.00      0.62        83
+
+    accuracy                           0.48       207
+   macro avg       0.62      0.42      0.35       207
+weighted avg       0.60      0.48      0.38       207
+
+
+--- Machine à Vecteurs de Support (LinearSVC) ---
+Précision globale (Accuracy) : 0.7295
+
+Rapport de classification :
+              precision    recall  f1-score   support
+
+   1950-1975       0.74      0.77      0.75        60
+   1976-1999       0.63      0.56      0.60        64
+   2000-2024       0.78      0.83      0.81        83
+
+    accuracy                           0.73       207
+   macro avg       0.72      0.72      0.72       207
+weighted avg       0.72      0.73      0.73       207
+
+
+--- Arbre de Décision (J48 / DecisionTreeClassifier) ---
+Précision globale (Accuracy) : 0.5749
+
+Rapport de classification :
+              precision    recall  f1-score   support
+
+   1950-1975       0.67      0.68      0.68        60
+   1976-1999       0.42      0.34      0.38        64
+   2000-2024       0.60      0.67      0.64        83
+
+    accuracy                           0.57       207
+   macro avg       0.56      0.57      0.56       207
+weighted avg       0.56      0.57      0.57       207
+

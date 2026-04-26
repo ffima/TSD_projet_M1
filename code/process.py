@@ -38,24 +38,30 @@ def organize_dataset(src_dir, dest_dir):
             except ValueError:
                 continue
 
-            # 3. Calcul de la décennie (par exemple, 1954 // 10 * 10 = 1950)
-            decade = (year // 10) * 10
-            decade_folder_name = f"{decade}s"
+        # 3. Définition de l'ère en fonction de l'année
+            if 1950 <= year <= 1975:
+                era_folder_name = "1950-1975"
+            elif 1976 <= year <= 1999:
+                era_folder_name = "1976-1999"
+            elif 2000 <= year <= 2024:
+                era_folder_name = "2000-2024"
+            else:
+                continue
             
-            # Création du dossier décennie (par exemple, data/raw/1950s)
-            target_decade_dir = dest_path / decade_folder_name
-            target_decade_dir.mkdir(parents=True, exist_ok=True)
+            # Création du dossier de l'ère (par exemple, data/raw/1950-1975)
+            target_era_dir = dest_path / era_folder_name
+            target_era_dir.mkdir(parents=True, exist_ok=True)
 
             # 4. Traitement de chaque fichier .srt
             for file_path in year_dir.glob("*.srt"):
                 # Formater un nouveau nom : "Nom original (Catégorie).srt"
                 new_filename = f"{file_path.stem} ({category_name}){file_path.suffix}"
-                target_file_path = target_decade_dir / new_filename
+                target_file_path = target_era_dir / new_filename
 
-                # Copier le fichier (pour ne pas détruire les sources dans srts)
+                # Copier le fichier
                 shutil.copy2(file_path, target_file_path)
                 
-                print(f"[{decade_folder_name}] {new_filename}")
+                print(f"[{era_folder_name}] {new_filename}")
                 files_processed += 1
 
     print(f"\nTerminé ! Fichiers traités : {files_processed}")

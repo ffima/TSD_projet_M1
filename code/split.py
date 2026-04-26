@@ -24,22 +24,22 @@ def split_data(source_dir, train_dir, test_dir, split_ratio=0.8):
     test_path.mkdir(parents=True, exist_ok=True)
 
     # Parcours des dossiers par décennie
-    for decade_folder in source_path.iterdir():
-        if not decade_folder.is_dir():
+    for era_folder in source_path.iterdir():
+        if not era_folder.is_dir():
             continue
 
-        decade = decade_folder.name
+        era = era_folder.name
         
         # Création des sous-dossiers correspondants dans train et test
-        (train_path / decade).mkdir(parents=True, exist_ok=True)
-        (test_path / decade).mkdir(parents=True, exist_ok=True)
+        (train_path / era).mkdir(parents=True, exist_ok=True)
+        (test_path / era).mkdir(parents=True, exist_ok=True)
 
         oscar_files = []
         blockbuster_files = []
         other_files = [] 
 
         # Tri des fichiers par catégorie selon leur nom
-        for file_path in decade_folder.glob("*.txt"):
+        for file_path in era_folder.glob("*.txt"):
             filename_lower = file_path.name.lower()
             
             if "oscar" in filename_lower:
@@ -64,18 +64,20 @@ def split_data(source_dir, train_dir, test_dir, split_ratio=0.8):
             
             # Copie des fichiers d'entraînement
             for f in train_files:
-                shutil.copy2(f, train_path / decade / f.name)
+                shutil.copy2(f, train_path / era
+     / f.name)
                 
             # Copie des fichiers de test
             for f in test_files:
-                shutil.copy2(f, test_path / decade / f.name)
+                shutil.copy2(f, test_path / era
+     / f.name)
 
         # Application de la séparation pour chaque catégorie
         process_and_copy(oscar_files)
         process_and_copy(blockbuster_files)
         process_and_copy(other_files) 
         
-        print(f"Dossier {decade} traité : "
+        print(f"Dossier {era} traité : "
               f"Fichiers Oscar : ({len(oscar_files)}), "
               f"Fichiers Blockbusters : ({len(blockbuster_files)}).")
 
