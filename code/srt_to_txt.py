@@ -9,10 +9,15 @@ source for the base of the script: https://gist.github.com/hshrews/e7b4f54edebf6
     Assumptions:
         - lines beginning with lowercase letters or commas are part of the previous line
         - lines beginning with any other character are new lines
+
+MODE D'EMPLOI :
+1. Exécution avec valeurs par défaut : python srt_to_txt.py
+2. Exécution personnalisée : python srt_to_txt.py <dossier_entree> <dossier_sortie>
 """
 
 import os
 import re
+import sys 
 
 def is_timestamp(l):
     return True if l[:2].isnumeric() and l[2] == ':' else False
@@ -61,21 +66,26 @@ def file_srt_to_txt(file_path, target_dir, encoding):
         f.write(data)
 
 def main():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    base_dir = os.path.dirname(script_dir) 
-    
-    raw_dir = os.path.join(base_dir, 'data', 'raw')
-    processed_dir = os.path.join(base_dir, 'data', 'processed')
+    if len(sys.argv) > 2:
+        raw_dir = sys.argv[1]
+        processed_dir = sys.argv[2]
+    else:
+        # Chemins par défaut
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        base_dir = os.path.dirname(script_dir) 
+        
+        raw_dir = os.path.join(base_dir, 'data', 'raw')
+        processed_dir = os.path.join(base_dir, 'data', 'processed')
 
     if not os.path.isdir(raw_dir):
-        print(f'Error : directory not found -> {raw_dir}')
+        print(f"Erreur : répertoire introuvable -> {raw_dir}")
         return
 
     encoding = 'utf-8'
 
-    print(f'Scanning directory : {raw_dir}')
+    print(f"Analyse du répertoire : {raw_dir}")
     
-    for root, dirs, files in os.walk(raw_dir):
+    for root, _, files in os.walk(raw_dir):
         for file_name in files:
             if file_name.endswith(".srt"):
                 file_path = os.path.join(root, file_name)
@@ -89,9 +99,9 @@ def main():
                 os.makedirs(target_dir, exist_ok=True)
                 
                 file_srt_to_txt(file_path, target_dir, encoding)
-                print(f'File found : {os.path.join(rel_path, file_name) if rel_path != "." else file_name}')
+                print(f"Fichier trouvé : {os.path.join(rel_path, file_name) if rel_path != '.' else file_name}")
                 
-    print(f'\nDone! Files saved in : {processed_dir}')
+    print(f"\nTerminé ! Fichiers enregistrés dans : {processed_dir}")
 
 if __name__ == '__main__':
     main()

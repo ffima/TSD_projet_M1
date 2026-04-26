@@ -1,19 +1,24 @@
+"""
+MODE D'EMPLOI :
+1. Placez ce script dans le dossier 'code/'.
+2. Exécution avec valeurs par défaut : python process.py
+3. Exécution avec chemins personnalisés : python process.py <dossier_source> <dossier_destination>
+   Exemple : python process.py ../data/srts ../data/raw
+"""
+
 import shutil
 from pathlib import Path
+import sys
 
-def organize_dataset():
-    base_path = Path(__file__).parent.parent
-    
-    src_path = base_path / "data" / "srts"
-    dest_path = base_path / "data" / "raw"
+def organize_dataset(src_dir, dest_dir):
+    src_path = Path(src_dir)
+    dest_path = Path(dest_dir)
 
     if not src_path.exists():
-        print(f"Erreur: Dossier source '{src_path}' non trouvé! Vérifiez la structure.")
+        print(f"Erreur : Dossier source '{src_path}' non trouvé.")
         return
 
-    print(f"Recherche de fichiers dans: {src_path}")
-    print(f"Création de nouveaux dossiers dans: {dest_path}\n")
-
+    print(f"Organisation des fichiers de {src_path} vers {dest_path}...")
     files_processed = 0
 
     # 1. Parcours des dossiers de catégories (Blockbusters et Oscars)
@@ -43,7 +48,7 @@ def organize_dataset():
 
             # 4. Traitement de chaque fichier .srt
             for file_path in year_dir.glob("*.srt"):
-                # Formatter un nouveau nom: "Nom original (Catégorie).srt"
+                # Formater un nouveau nom : "Nom original (Catégorie).srt"
                 new_filename = f"{file_path.stem} ({category_name}){file_path.suffix}"
                 target_file_path = target_decade_dir / new_filename
 
@@ -53,7 +58,11 @@ def organize_dataset():
                 print(f"[{decade_folder_name}] {new_filename}")
                 files_processed += 1
 
-    print(f"\nFini! Fichiers traités: {files_processed}")
+    print(f"\nTerminé ! Fichiers traités : {files_processed}")
 
 if __name__ == "__main__":
-    organize_dataset()
+    # Récupération des arguments via sys.argv ou utilisation des valeurs par défaut
+    src_directory = sys.argv[1] if len(sys.argv) > 1 else "../data/srts"
+    dest_directory = sys.argv[2] if len(sys.argv) > 2 else "../data/raw"
+    
+    organize_dataset(src_directory, dest_directory)
