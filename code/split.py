@@ -23,7 +23,7 @@ def split_data(source_dir, train_dir, test_dir, split_ratio=0.8):
     train_path.mkdir(parents=True, exist_ok=True)
     test_path.mkdir(parents=True, exist_ok=True)
 
-    # Parcours des dossiers par décennie
+    # Parcours des dossiers par ère
     for era_folder in source_path.iterdir():
         if not era_folder.is_dir():
             continue
@@ -64,13 +64,11 @@ def split_data(source_dir, train_dir, test_dir, split_ratio=0.8):
             
             # Copie des fichiers d'entraînement
             for f in train_files:
-                shutil.copy2(f, train_path / era
-     / f.name)
+                shutil.copy2(f, train_path / era / f.name)
                 
             # Copie des fichiers de test
             for f in test_files:
-                shutil.copy2(f, test_path / era
-     / f.name)
+                shutil.copy2(f, test_path / era / f.name)
 
         # Application de la séparation pour chaque catégorie
         process_and_copy(oscar_files)
